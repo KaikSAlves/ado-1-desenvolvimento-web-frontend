@@ -7,13 +7,14 @@
     th, td {
         padding: 8px;
         text-align: left;
+        font: 400 24px 'Poppins';
     }
 
     th {
         background-color: #eee4e4;
         color: black;
-        font: 600 18px 'Poppins';
-        min-width: 100px;
+        font: 600 25px 'Poppins';
+        min-width: 150px;
         text-align: center;
         border: 1px solid #ddd;
     }
@@ -25,7 +26,19 @@
         background-color: #ddd;
     }
 
-    .button {
-        
+    button {
+        border: none;
+        width: 50px;
+        font:600 28px 'Poppins';
+        background-color: rgba($color: #000000, $alpha: 0);
+        cursor: pointer;
+    }
+
+    .botao-excluir {
+        color: red;
+    }
+
+    .td-acao{
+        text-align: center;
     }
 }

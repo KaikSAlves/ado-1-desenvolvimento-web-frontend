@@ -1,5 +1,6 @@
 import './index.scss';
 import { useState } from 'react';
+import { listarTurmas } from '../../service/ApiService';
 
 export default function Tabela(){
     const [turmas, setTurmas] = useState([
@@ -7,6 +8,7 @@ export default function Tabela(){
     ]);
   
     const editarTurma = (id) => {
+        console.log(listarTurmas());
     };
   
     const deletarTurma = (id) => {
@@ -38,9 +40,13 @@ export default function Tabela(){
                 <td>{turma.qtd_capacidade}</td>
                 <td>{turma.bt_ativo}</td>
                 <td>{turma.dt_inclusao}</td>
-                <td>
-                  <button onClick={() => editarTurma(turma.id_turma)}>Editar</button>
-                  <button onClick={() => deletarTurma(turma.id_turma)}>Excluir</button>
+                <td className='td-acao'>
+                  <button onClick={() => editarTurma(turma.id_turma)}>
+                    <i className='fa fa-pencil'></i>
+                  </button>
+                  <button className='botao-excluir' onClick={() => deletarTurma(turma.id_turma)}>
+                    <i className='fa fa-trash'></i>
+                  </button>
                 </td>
               </tr>
             ))}
