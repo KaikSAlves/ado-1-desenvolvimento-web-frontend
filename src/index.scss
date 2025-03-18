@@ -4,4 +4,19 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Poppins';
+  height: 100vh;
+}
+
+.pagina {
+  background-color: #f5f6fa;
+  min-height: 100vh;
+
+  .cabecalho {
+    background-color: white;
+    padding: 20px 30px;
+  }
+
+  h1 {
+    font: 600 28px 'Poppins';
+  }
 }

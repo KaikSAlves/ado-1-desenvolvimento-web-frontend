@@ -1,0 +1,37 @@
+
+.secao {
+
+    display: flex;
+    flex-direction: column;
+
+     h2 {
+        font: 600 28px 'Poppins';
+        padding: 10px 40px;
+     }
+
+     .botao-criar {
+        width: 100px;
+        height: 40px;
+        position: fixed;
+        margin: 40px 0px 0px 90%;
+        cursor: pointer;
+        font: 600 14px 'Poppins';
+        background-color: rgb(73, 224, 73);
+        border: none;
+        border-radius: 5px;
+     }
+
+     .container-sub-cabecalho {
+        display: flex;
+        flex-direction: row;
+        
+     }
+
+     .container-tabela {
+        margin: 40px 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+     }
+}

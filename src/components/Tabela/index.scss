@@ -1,0 +1,31 @@
+
+.tabela {
+    box-shadow: 0px 0px 40px 2px #ece4e4;
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #eee4e4;
+        color: black;
+        font: 600 18px 'Poppins';
+        min-width: 100px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    .button {
+        
+    }
+}

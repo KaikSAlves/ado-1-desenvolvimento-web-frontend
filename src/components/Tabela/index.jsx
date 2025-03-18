@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export default function Tabela(){
     const [turmas, setTurmas] = useState([
-      { id: 1, nm_turma: 'TADS1', ds_curso: 'ADS', nr_ano_letivo: 3, qtd_capacidade: 30, bt_ativo: true, dt_inclusao: '2024-09-12' }
+      { id_turma: 1, nm_turma: 'TADS1', ds_curso: 'ADS', nr_ano_letivo: 3, qtd_capacidade: 30, bt_ativo: true, dt_inclusao: '2024-09-12' }
     ]);
   
     const editarTurma = (id) => {
@@ -15,8 +15,8 @@ export default function Tabela(){
   
     return (
       <div>
-        <table>
-          <thead>
+        <table className='tabela'>
+          <thead >
             <tr>
               <th>id_turma</th>
               <th>nm_turma</th>
@@ -31,6 +31,7 @@ export default function Tabela(){
           <tbody>
             {turmas.map(turma => (
               <tr key={turma.id_turma}>
+                <td>{turma.id_turma}</td>
                 <td>{turma.nm_turma}</td>
                 <td>{turma.ds_curso}</td>
                 <td>{turma.nr_ano_letivo}</td>
