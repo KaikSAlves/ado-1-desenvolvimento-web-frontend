@@ -1,6 +1,7 @@
 import { compile } from "sass";
 
 export async function listarTurmas(){
+    /*
     let dados;
 
     try{
@@ -12,6 +13,17 @@ export async function listarTurmas(){
     }
     
     return dados;
+    */
+
+    //testar sem banco de dados
+
+    return [
+        {"id_turma": 1, "nm_turma": "teste", "ds_curso": "teste","nr_ano_letivo": 4,"qtd_capacidade": 4,"bt_ativo": true,"dt_inclusao": "2022-12-22"},
+        {"id_turma": 1,"nm_turma": "teste", "ds_curso": "teste","nr_ano_letivo": 4,"qtd_capacidade": 4,"bt_ativo": true,"dt_inclusao": "2022-12-22"},
+        {"id_turma": 1,"nm_turma": "teste", "ds_curso": "teste","nr_ano_letivo": 4,"qtd_capacidade": 4,"bt_ativo": true,"dt_inclusao": "2022-12-22"},
+        {"id_turma": 1,"nm_turma": "teste", "ds_curso": "teste","nr_ano_letivo": 4,"qtd_capacidade": 4,"bt_ativo": true,"dt_inclusao": "2022-12-22"},
+        {"nm_turma": "teste", "ds_curso": "teste","nr_ano_letivo": 4,"qtd_capacidade": 4,"bt_ativo": false,"dt_inclusao": "2022-12-22"}
+    ];
 }
 
 export async function excluirTurma(id){

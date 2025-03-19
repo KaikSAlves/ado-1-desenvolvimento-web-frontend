@@ -1,10 +1,13 @@
 import "./index.scss";
 import {useEffect, useState } from "react";
 import { listarTurmas , excluirTurma} from "../../service/ApiService";
+import { useNavigate } from "react-router-dom";
 
 export default function Tabela() {
+  const navigate = useNavigate();
   const [turmas, setTurmas] = useState([]);
-
+  const [turmaAlterar, setTurmaAlterar] = useState({});
+  
   useEffect(() => {
     const carregarTurmas = async () => {
         const dados = await listarTurmas();
@@ -14,8 +17,9 @@ export default function Tabela() {
     carregarTurmas();
   }, []);
 
-  const editarTurma = (id) => {
-    console.log();
+  const editarTurma = (turma) => {
+    setTurmaAlterar(turma);
+    navigate('/editar', {state : {turma}});
   };
 
   const deletarTurma = async (id) => {
@@ -24,6 +28,8 @@ export default function Tabela() {
 
     alert("Linhas afetadas " + result.affectedRows );
   };
+
+  
 
   return (
     <div>
@@ -51,7 +57,7 @@ export default function Tabela() {
               <td>{String(turma.bt_ativo)}</td>
               <td>{(turma.dt_inclusao)}</td>
               <td className="td-acao">
-                <button onClick={() => editarTurma(turma.id_turma)}>
+                <button onClick={() => editarTurma(turma)}>
                   <i className="fa fa-pencil"></i>
                 </button>
                 <button
