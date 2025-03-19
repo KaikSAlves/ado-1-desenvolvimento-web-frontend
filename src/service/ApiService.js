@@ -1,16 +1,31 @@
 import { compile } from "sass";
 
-export function listarTurmas(){
+export async function listarTurmas(){
     let dados;
 
-    fetch('http://localhost:8080/turma')
-    .then(Response => {
-        Response.json()
-        .then(data => {
-            console.log(data)
-           dados = data;
-        })
-    })
+    try{
+        const response = await fetch('http://localhost:8080/turma');
+        const data = await response.json();
+        dados = data;
+    }catch (error){
+        console.error(error);
+    }
+    
+    return dados;
+}
 
+export async function excluirTurma(id){
+    let dados;
+    
+    try{
+        const response = await 
+        fetch('http://localhost:8080/turma/' + id,{
+            method: 'DELETE',
+        });
+        const data = await response.json();
+        dados = data;
+    }catch (error){
+        console.error(error);
+    }
     return dados;
 }
