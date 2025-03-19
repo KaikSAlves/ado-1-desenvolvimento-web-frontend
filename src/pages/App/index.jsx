@@ -5,9 +5,10 @@ import "./index.scss";
 export default function App() {
   const navigate = useNavigate();
 
-  function irParaCriar(){
+  function irParaCriar() {
     navigate('/criar');
   }
+
   return (
     <div className="pagina-app pagina">
       <header className="cabecalho">

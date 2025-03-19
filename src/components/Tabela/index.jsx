@@ -1,38 +1,58 @@
 import "./index.scss";
-import {useEffect, useState } from "react";
+import {useEffect, useRef, useState } from "react";
 import { listarTurmas , excluirTurma} from "../../service/ApiService";
 import { useNavigate } from "react-router-dom";
 
 export default function Tabela() {
   const navigate = useNavigate();
   const [turmas, setTurmas] = useState([]);
-  const [turmaAlterar, setTurmaAlterar] = useState({});
-  
+  const [filtros, setFiltros] = useState([]);
+
+  const inputData = useRef(null);
+  const inputCurso = useRef(null);
+
   useEffect(() => {
     const carregarTurmas = async () => {
         const dados = await listarTurmas();
         setTurmas(dados);
+        setFiltros(dados);
     };
 
     carregarTurmas();
   }, []);
 
   const editarTurma = (turma) => {
-    setTurmaAlterar(turma);
     navigate('/editar', {state : {turma}});
   };
 
   const deletarTurma = async (id) => {
     const result = await excluirTurma(id);
-    setTurmas(turmas.filter((turma) => turma.id_turma !== id));
+    setFiltros(filtros.filter((turma) => turma.id_turma !== id));
 
     alert("Linhas afetadas " + result.affectedRows );
   };
 
+  function filtrarPorData(e){
+    //pegar resultado banco de dados
+    setFiltros(filtros.filter((turma) => turma.dt_inclusao == e.target))
+  }
+
+  function filtrarPorDataECurso(e){
+    //pegar resultado banco de dados
+  }
+
+  function limparFiltros(){
+    setFiltros(turmas);
+    inputData.current.value = "";
+    inputCurso.current.value = "";
+  }
   
 
   return (
     <div>
+      <input type="date" onChange={filtrarPorData} ref={inputData}/>
+      <input type="text" placeholder="Filtre pelo nome do curso" ref={inputCurso}/>
+      <button className="botao-limpar" onClick={limparFiltros}>Limpar</button>
       <table className="tabela">
         <thead>
           <tr>
@@ -47,7 +67,7 @@ export default function Tabela() {
           </tr>
         </thead>
         <tbody>
-          {turmas.map((turma) => (
+          {filtros.map((turma) => (
             <tr key={turma.id_turma}>
               <td>{turma.id_turma}</td>
               <td>{turma.nm_turma}</td>
