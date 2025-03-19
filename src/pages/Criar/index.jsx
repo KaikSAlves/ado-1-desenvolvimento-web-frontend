@@ -33,7 +33,7 @@ export default function Criar() {
 
   const handleSubmit = async (e) => {
     let result = await criarTurma(formData);
-    alert("Usuario criado, id " + result.id);
+    alert("Turma criada, id " + result.id);
   };
 
   const voltar = () => {
@@ -82,7 +82,7 @@ export default function Criar() {
             name="qtd_capacidade"
             value={formData.qtd_capacidade}
             onChange={handleChange}
-            placeholder="Quantidade capacidade"
+            placeholder="Capacidade"
             required
           />
           <br />
