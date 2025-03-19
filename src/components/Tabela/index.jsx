@@ -11,8 +11,6 @@ export default function Tabela() {
         setTurmas(dados);
     };
 
-    
-
     carregarTurmas();
   }, []);
 

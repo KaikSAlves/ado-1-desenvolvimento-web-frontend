@@ -25,7 +25,7 @@
       }
 
       input {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         min-width: 80%;
         height: 60px;
         font: 500 25px 'Poppins';
@@ -55,7 +55,22 @@
       }
 
       .container-data {
-        
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: flex-start !important;
+        width: 80%;
+      }
+
+      button {
+        width: 200px;
+        height: 60px;
+        cursor: pointer;
+        font: 600 20px 'Poppins';
+        background-color: rgb(73, 224, 73);
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 30px;
       }
     }
   }
