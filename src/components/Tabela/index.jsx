@@ -36,6 +36,7 @@ export default function Tabela() {
     console.log(id)
     const result = await excluirTurma(id);
     setFiltros(filtros.filter((turma) => turma.id_turma !== id));
+    setTurmas(turmas.filter((turma) => turma.id_turma !== id));
     alert("Linhas afetadas " + result.affectedRows);
   };
 
