@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './index.scss'
 import { useEffect, useState } from 'react';
+import { editarTurma } from '../../service/ApiService';
 
 
 export default function Editar() {
@@ -33,7 +34,8 @@ export default function Editar() {
   };
 
   const handleSubmit = async (e) => {
-    //logica para editar
+    let result = await editarTurma(formData);
+    alert("Linhas afetadas " + result.affectedRows);
   };
 
   const voltar = () => {
@@ -56,6 +58,7 @@ export default function Editar() {
                         value={formData.id_turma}
                         onChange={handleChange}
                         placeholder="Id"
+                        readOnly
                         required
                     />
                     <input

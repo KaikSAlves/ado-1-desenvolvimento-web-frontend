@@ -1,6 +1,6 @@
 import "./index.scss";
-import {useEffect, useRef, useState } from "react";
-import { listarTurmas , excluirTurma} from "../../service/ApiService";
+import { useEffect, useRef, useState } from "react";
+import { listarTurmas, excluirTurma } from "../../service/ApiService";
 import { useNavigate } from "react-router-dom";
 
 export default function Tabela() {
@@ -13,45 +13,52 @@ export default function Tabela() {
 
   useEffect(() => {
     const carregarTurmas = async () => {
-        const dados = await listarTurmas();
-        setTurmas(dados);
-        setFiltros(dados);
+      const dados = await listarTurmas();
+      setTurmas(dados);
+      setFiltros(dados);
     };
 
     carregarTurmas();
   }, []);
 
   const editarTurma = (turma) => {
-    navigate('/editar', {state : {turma}});
+    const data = new Date(turma.dt_inclusao);
+
+    const ano = data.getUTCFullYear();
+    const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
+    const dia = String(data.getUTCDate()).padStart(2, '0');
+
+    turma.dt_inclusao = `${ano}-${mes}-${dia}`;
+    navigate('/editar', { state: { turma } });
   };
 
   const deletarTurma = async (id) => {
     const result = await excluirTurma(id);
     setFiltros(filtros.filter((turma) => turma.id_turma !== id));
 
-    alert("Linhas afetadas " + result.affectedRows );
+    alert("Linhas afetadas " + result.affectedRows);
   };
 
-  function filtrarPorData(e){
+  function filtrarPorData(e) {
     //pegar resultado banco de dados
     setFiltros(filtros.filter((turma) => turma.dt_inclusao == e.target))
   }
 
-  function filtrarPorDataECurso(e){
+  function filtrarPorDataECurso(e) {
     //pegar resultado banco de dados
   }
 
-  function limparFiltros(){
+  function limparFiltros() {
     setFiltros(turmas);
     inputData.current.value = "";
     inputCurso.current.value = "";
   }
-  
+
 
   return (
     <div>
-      <input type="date" onChange={filtrarPorData} ref={inputData}/>
-      <input type="text" placeholder="Filtre pelo nome do curso" ref={inputCurso}/>
+      <input type="date" onChange={filtrarPorData} ref={inputData} />
+      <input type="text" placeholder="Filtre pelo nome do curso" ref={inputCurso} />
       <button className="botao-limpar" onClick={limparFiltros}>Limpar</button>
       <table className="tabela">
         <thead>
