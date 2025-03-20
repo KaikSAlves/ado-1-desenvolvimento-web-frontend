@@ -105,3 +105,31 @@ export async function editarTurma(turma){
    
     return dados;
 }
+
+export async function listarPorAno(ano){
+    let dados;
+
+    try{
+        const response = await 
+        fetch('http://localhost:8080/turma/busca/ano?ano='+ano);
+        const data = await response.json();
+        dados = data;
+    }catch (error){
+        console.error(error);
+    }
+    return dados;
+}
+
+export async function listarPorAnoECurso(ano, curso){
+    let dados;
+
+    try{
+        const response = await 
+        fetch('http://localhost:8080/turma/'+ano+'/curso?curso='+curso);
+        const data = await response.json();
+        dados = data;
+    }catch (error){
+        console.error(error);
+    }
+    return dados;
+}

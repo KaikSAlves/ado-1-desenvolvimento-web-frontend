@@ -1,6 +1,6 @@
 import "./index.scss";
 import { useEffect, useRef, useState } from "react";
-import { listarTurmas, excluirTurma } from "../../service/ApiService";
+import { listarPorAno, listarTurmas, excluirTurma, listarPorAnoECurso } from "../../service/ApiService";
 import { useNavigate } from "react-router-dom";
 
 export default function Tabela() {
@@ -33,19 +33,31 @@ export default function Tabela() {
   };
 
   const deletarTurma = async (id) => {
+    console.log(id)
     const result = await excluirTurma(id);
     setFiltros(filtros.filter((turma) => turma.id_turma !== id));
-
     alert("Linhas afetadas " + result.affectedRows);
   };
 
-  function filtrarPorData(e) {
-    //pegar resultado banco de dados
-    setFiltros(filtros.filter((turma) => turma.dt_inclusao == e.target))
+  async function filtrarPorData(e) {
+    let ano = e.target.value;
+    if(ano == ""){
+      setFiltros(turmas);
+    }else{
+      const result = await listarPorAno(e.target.value)
+      setFiltros(result);
+    }
   }
 
-  function filtrarPorDataECurso(e) {
-    //pegar resultado banco de dados
+  async function filtrarPorAnoECurso(e) {
+    let curso = e.target.value;
+  
+    if(inputData.current.value != ""){
+      let ano = inputData.current.value;
+      const result = await listarPorAnoECurso(ano, curso);
+      setFiltros(result);
+    }
+  
   }
 
   function limparFiltros() {
@@ -57,8 +69,8 @@ export default function Tabela() {
 
   return (
     <div>
-      <input type="date" onChange={filtrarPorData} ref={inputData} />
-      <input type="text" placeholder="Filtre pelo nome do curso" ref={inputCurso} />
+      <input type="text" onChange={filtrarPorData} placeholder = "Filtre por um ano" ref={inputData} />
+      <input type="text" onChange={filtrarPorAnoECurso} placeholder="Filtre pelo nome do curso" ref={inputCurso} />
       <button className="botao-limpar" onClick={limparFiltros}>Limpar</button>
       <table className="tabela">
         <thead>
